@@ -1,7 +1,5 @@
 module Lista where
 
-import qualified Data.Text as T 
-
 mapTest :: [Integer] -> [Integer] 
 mapTest lista = map succ lista
 
@@ -60,6 +58,16 @@ otaEkaAlkiob :: forall a. [a] -> Maybe a
 otaEkaAlkiob [] = Nothing
 otaEkaAlkiob (eka:_) = Just eka
 
+epätyhjiäRivejä :: Text -> Natural
+epätyhjiäRivejä teksti = genericLength (filter (\x -> x /= "") (lines teksti))
+
+sanaaRivillä :: Text -> [Natural]
+sanaaRivillä teksti 
+    = let
+        rivit = lines teksti
+        sanat = map words rivit
+        pituudet = map genericLength sanat
+      in map fromIntegral pituudet
 
 summaB :: forall a. Num a => [a] -> a
 summaB [] = 0
@@ -67,6 +75,13 @@ summaB (eka:loput)
     = let
         loputSumma = summaB loput 
       in eka+loputSumma
+
+sanaaKeskimäärin :: Text -> Maybe Natural
+sanaaKeskimäärin teksti 
+    = let
+        sanatRivillä = sanaaRivillä teksti
+        vastaus = (fromIntegral (summaB sanatRivillä))/(fromIntegral (genericLength sanatRivillä))
+      in Just (round vastaus)
 
 mitta :: forall a. [a] -> Int 
 mitta [] = 0 
@@ -82,16 +97,10 @@ kaikkiOnTrue (eka:loput)
         False -> False
         True -> kaikkiOnTrue loput
 
+mäppää :: forall a b. (a -> b) -> [a] -> [b]
+mäppää funktio [] = []
+mäppää funktio (eka:loput) = [(funktio eka)]++(mäppää funktio loput)
 
-laskeSanat :: Text -> [Natural]
-laskeSanat txt 
-    = let 
-        rivit :: [Text]
-        rivit = lines txt 
-        -- 
-        sanoja :: [[Text]] -- [["eka","toka"],"kolmas", "neljäs"]
-        sanoja = map words rivit 
-
-        lkmRivillä :: [Natural]
-        lkmRivillä = map fromIntegral (map length sanoja) 
-      in lkmRivillä
+suodata :: forall a. (a -> Bool) -> [a] -> [a]
+suodata funktio [] = []
+suodata funktio (eka:loput) = if (funktio eka) then [eka]++(suodata funktio loput) else suodata funktio loput

@@ -1,0 +1,4 @@
+unzip
+    - [(a,b)] -> ([a], [b])
+    - Ottaaa vastaan listan pareja, samanlaisen kun funktio zip tekee. Ja palauttaa parin jossa on kaksi listaa 
+    - unzip [("pekka",21), ("ville",40), ("seppo", 50)] palauttaa (["pekka","ville","seppo"],[21,40,50])
