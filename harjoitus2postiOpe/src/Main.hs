@@ -2,6 +2,8 @@
 
 module Main where
 
+import Test.QuickCheck
+
 {- Tehtävänanto
  
  Hinnoitellaan postipaketteja.
@@ -146,7 +148,16 @@ perusHinta luokka
 
 -- Katotaan tätä toivottavasti vielä ennen ekaa välikoetta. Olisihan se kiva saada
 -- kokonainen ohjelma aikaan
+
+testi :: Int -> Int -> Int -> Int -> Int -> Int-> Bool 
+testi pituus leveys korkeus muutosa muutosb muutosc 
+  = hinta (Ykkösluokka (Suorakaide (n pituus) (n leveys) (n korkeus)))
+      <= hinta (Ykkösluokka (Suorakaide (n muutosa + n pituus) (n leveys + n muutosb) (n korkeus + n muutosc)))
+    where
+      n jokuInt = min 1 (fromIntegral (abs jokuInt))
+
 main :: IO ()
 main = do
-  putStrLn "Hello TIEA341"
+  putStrLn "Hinta kasvaa testi"
+  quickCheckWith stdArgs{maxSuccess=1000} testi
 

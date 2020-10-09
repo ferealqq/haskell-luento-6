@@ -1,8 +1,8 @@
-name:                harjoitus2postiOpe
+name:                luento15
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/harjoitus2postiOpe#readme
+homepage:            https://github.com/githubuser/luento15#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Author name here
@@ -12,7 +12,7 @@ category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
 
-executable harjoitus2postiOpe
+executable luento15
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010
@@ -38,4 +38,4 @@ executable harjoitus2postiOpe
               InstanceSigs
               DerivingVia
               NoMonomorphismRestriction  
-  build-depends:       base-noprelude >= 4.7 && < 5, relude, pretty-simple, QuickCheck
+  build-depends:       base-noprelude >= 4.7 && < 5, relude, pretty-simple,QuickCheck
