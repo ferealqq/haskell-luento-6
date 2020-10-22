@@ -109,10 +109,13 @@ onkoPuussaTesti x = onkoPuussa x (lisää x puu)
   where
       puu = listaPuuksi [x]
 
-notOnkoTesti :: Int -> bool
+notOnkoTesti :: Int -> Bool
 notOnkoTesti x = onkoPuussa x (poista x puu)
   where
     puu = lisää x Tyhjä
+
+--validi :: forall a. Ord a = BHP -> Bool
+
 
 main :: IO ()
 main = do
